@@ -1,0 +1,183 @@
+/*
+ * Custom style for specifics to Nosem Capital
+
+ * CONTENTS:
+ *
+ * 1. Fonts
+ * 2. Defaults
+ * 3. Widgets
+ * 4. Application form
+ * 5. Footer
+ * 6. Background
+ * 7. Alignment
+ * 8. Other
+ */
+
+/* Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: 'TrajanPro-Bold';
+  src: url('../fonts/TrajanPro-Bold.eot');                           /* IE9 Compat Modes */
+  src: url('../fonts/TrajanPro-Bold.woff2') format('woff2'),         /* Super Modern Browsers */
+       url('../fonts/TrajanPro-Bold.woff') format('woff'),           /* Pretty Modern Browsers */
+       url('../fonts/TrajanPro-Bold.ttf')  format('truetype'),       /* Safari, Android, iOS */
+       url('../fonts/TrajanPro-Bold.svg') format('svg');             /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'TrajanPro-Regular';
+  src: url('../fonts/TrajanPro-Regular.eot');
+  src: url('../fonts/TrajanPro-Regular.woff2') format('woff2'),
+       url('../fonts/TrajanPro-Regular.woff') format('woff'),
+       url('../fonts/TrajanPro-Regular.ttf')  format('truetype'),
+       url('../fonts/TrajanPro-Regular.svg') format('svg');
+}
+
+
+/* Defaults
+   ========================================================================== */
+
+html,
+body {
+  font-size: 1.0625rem; 
+  overflow-x: hidden; }
+
+body, button, input, select, textarea, .ast-button, .ast-custom-button {
+  font-family: 'TrajanPro-Regular' !important; }
+
+@media (max-width: 460px) {
+  body .elementor-button.elementor-size-md, body .elementor-button {
+    font-size: 16px !important;
+  }
+}
+
+h1, h2, h3 {
+  font-family: 'TrajanPro-Bold' !important; }
+
+
+@media (max-width: 460px) {
+  h1 {
+    font-size: 36px !important;
+  }
+
+  h2 {
+    font-size: 21.5px !important;
+  }
+
+  h3 {
+    font-size: 19.5px !important;
+  }
+
+  h4 {
+    font-size: 18px !important;
+  }
+
+  div, p {
+    font-size: 14px !important;
+  }
+}
+
+.ast-theme-transparent-header #masthead {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.ast-theme-transparent-header .main-header-bar, .ast-theme-transparent-header.ast-header-break-point .main-header-bar {
+   background: none;
+}
+
+
+/* Widgets
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .elementor-row > .product-column:not(:first-child) {
+    margin-top: 25px;
+  } 
+
+  .elementor-row > .product-column ul {
+    margin-top: 0.85em;
+  } 
+}
+
+
+/* Application Form
+   ========================================================================== */
+
+.wpcf7 textarea {
+  height: 150px;
+}
+
+@media (max-width: 767px) {
+  .elementor-row > .product-column:not(:first-child) {
+    margin-top: 25px;
+  } 
+
+  .elementor-row > .product-column ul {
+    margin-top: 0.85em;
+  } 
+}
+
+@media (min-width: 1025px) {
+  .inline-section {
+    width: 48.5%;
+  }
+  .inline-section.tripple-fields {
+    width: 31.38%;
+  }
+  .left-field-section {
+    margin-right: 1.2em;
+  }
+}
+
+
+/* Footer
+   ========================================================================== */
+
+.footer-width-fixer .elementor-section > .elementor-container > .elementor-row > .elementor-column:first-child {
+  width: 100% !important;
+  text-align: center;
+}
+
+.footer-width-fixer .elementor-section > .elementor-container > .elementor-row > .elementor-column:last-child {
+  display: none;
+}
+
+@media (max-width: 460px) {
+  .footer-width-fixer .elementor-section {
+    padding: .25em 0em .25em 0em !important;
+  }
+}
+
+/* Background
+   ========================================================================== */
+
+
+
+/* Alignment
+   ========================================================================== */
+
+@media (max-width: 460px) {
+  .xs-mobile-pr5 {
+    padding-right: 75px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .xs-mobile-pr5 {
+    padding-right: 55px !important;
+  }
+}
+
+/* Other
+   ========================================================================== */
+
+@keyframes fadeInOpacity {
+   0% {
+      opacity: 0; }
+
+   100% {
+      opacity: 1; }
+}

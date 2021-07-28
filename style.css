@@ -17,47 +17,5 @@ Tags: custom-menu, custom-logo, entertainment, one-column, two-columns, left-sid
 */
 
 
-/* Global
+/* See css/style.css for customization
    ========================================================================== */
-
-@font-face {
-  font-family: 'TrajanPro-Bold';
-  src: url('fonts/TrajanPro-Bold.eot');                           /* IE9 Compat Modes */
-  src: url('fonts/TrajanPro-Bold.woff2') format('woff2'),         /* Super Modern Browsers */
-       url('fonts/TrajanPro-Bold.woff') format('woff'),           /* Pretty Modern Browsers */
-       url('fonts/TrajanPro-Bold.ttf')  format('truetype'),       /* Safari, Android, iOS */
-       url('fonts/TrajanPro-Bold.svg') format('svg');             /* Legacy iOS */
-}
-
-@font-face {
-  font-family: 'TrajanPro-Regular';
-  src: url('fonts/TrajanPro-Regular.eot');
-  src: url('fonts/TrajanPro-Regular.woff2') format('woff2'),
-       url('fonts/TrajanPro-Regular.woff') format('woff'),
-       url('fonts/TrajanPro-Regular.ttf')  format('truetype'),
-       url('fonts/TrajanPro-Regular.svg') format('svg');
-}
-
-@keyframes fadeInOpacity {
-	0% {
-		opacity: 0; }
-
-	100% {
-		opacity: 1; }
-}
-
-html,
-body {
-	font-size: 1.0625rem; 
-	overflow-x: hidden; }
-
-body, button, input, select, textarea, .ast-button, .ast-custom-button {
-	font-family: 'TrajanPro-Regular' !important; }
-
-h1, h2, h3 {
-	font-family: 'TrajanPro-Bold' !important; }
-
-
-
-
-
