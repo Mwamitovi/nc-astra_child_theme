@@ -1,280 +1,314 @@
-jQuery(document).ready(function( $ ){
+jQuery(document).ready(function ($) {
+	/**
+	 *
+	 * I want a loan for:
+	 * ----------------------------------------------------------------------------
+	 */
 
-    /* I want a loan for: */
+	// Individual options
+	$(".applicant_type input[value='Individual']").on("click", function (event) {
+		if (
+			document.querySelector('.applicant_type input[value="Individual"]') &&
+			document.querySelector('.applicant_type input[value="Individual"]').checked
+		) {
+			$(`
+				.attach-default,
+				.applicant_individual_work
+			`).removeClass("hide");
 
-    // Individual options
-    $( ".applicant_type input[value='Individual']" ).on( 'click', function(event) {
-
-        if ( 
-            document.querySelector('.applicant_type input[value="Individual"]')
-            && document.querySelector('.applicant_type input[value="Individual"]').checked
-        ) {
-            $('.applicant_company_work, .elementor-element.company').addClass('hide');
-            $('.applicant_individual_work').removeClass('hide');
-
-        } else {
-            // close any sub-options & individual-forms
-            $('.applicant_company_work').addClass('hide');
-            $('.applicant_individual_work').addClass('hide');            
-            $('.elementor-element.individual').addClass('hide');
-
-            if (
-                document.querySelector('.applicant_individual_work input[type="checkbox"]')
-                || document.querySelector('.applicant_individual_work input[value="Salary"]').checked
-                || document.querySelector('.applicant_individual_work input[value="Business"]').checked
-                || document.querySelector('.applicant_individual_work input[value="Farming"]').checked
-            ) {
-                // uncheck any previously "checked" sub-options
-                $('.applicant_individual_work input[type="checkbox"]').removeAttr('checked');
-            }            
-        };
-
-    });
-
-
-    // Company options
-    $( ".applicant_type input[value='Company']" ).on( 'click', function(event) {
-
-        if (
-            document.querySelector('.applicant_type input[value="Company"]')
-            && document.querySelector('.applicant_type input[value="Company"]')
-            && document.querySelector('.applicant_type input[value="Company"]').checked
-        ) {
-            $('.elementor-element.company').removeClass('hide');
-            $('.applicant_individual_work, .elementor-element.individual').addClass('hide');
-
-            if (
-                document.querySelector('.applicant_individual_work input[type="checkbox"]')
-                || document.querySelector('.applicant_individual_work input[value="Salary"]').checked
-                || document.querySelector('.applicant_individual_work input[value="Business"]').checked
-                || document.querySelector('.applicant_individual_work input[value="Farming"]').checked
-            ) {
-                // uncheck any previously "checked" sub-options
-                $('.applicant_individual_work input[type="checkbox"]').removeAttr('checked');
-            } 
-
-        } else {
-            $('.applicant_individual_work, .elementor-element.individual, .elementor-element.company').addClass('hide');
-        };
-
-    });
- 
-
-    /* My source of income is: */
-    
-    // Salary
-    $( ".applicant_individual_work input[value='Salary']" ).on( 'click', function(event) {
-
-        if (
-            document.querySelector('.applicant_individual_work input[value="Salary"]')
-            && document.querySelector('.applicant_individual_work input[value="Salary"]').checked
-        ) {
-            $('.elementor-element.individual, .elementor-element.company').addClass('hide');
-            $('.elementor-element.individual.salary').removeClass('hide');
-        } else {
-            $('.elementor-element.individual.salary').addClass('hide');           
-        };
-
-    });    
-
-    // Business
-    $( ".applicant_individual_work input[value='Business']" ).on( 'click', function(event) {
-
-        if (
-            document.querySelector('.applicant_individual_work input[value="Business"]')
-            && document.querySelector('.applicant_individual_work input[value="Business"]').checked
-        ) {
-            $('.elementor-element.individual, .elementor-element.company').addClass('hide');
-            $('.elementor-element.individual.business').removeClass('hide');
-        } else {
-            $('.elementor-element.individual.business').addClass('hide');           
-        };
-
-    });    
-
-    // Farming
-    $( ".applicant_individual_work input[value='Farming']" ).on( 'click', function(event) {
-
-        if (
-            document.querySelector('.applicant_individual_work input[value="Farming"]')
-            && document.querySelector('.applicant_individual_work input[value="Farming"]').checked
-        ) {
-            $('.elementor-element.individual, .elementor-element.company').addClass('hide');
-            $('.elementor-element.individual.farming').removeClass('hide');
-        } else {
-            $('.elementor-element.individual.farming').addClass('hide');           
-        };
-
-    });
+			$(`				
+				.attach-divider,
+				.applicant_company_work,
+				.elementor-element.company
+			`).addClass("hide");
+		} else {
+			// close any sub-options & individual-forms
+			$(`
+				.attach-divider,
+				.applicant_company_work, 
+				.applicant_individual_work,
+				.elementor-element.individual
+			`).addClass("hide");
 
 
-    /* Collateral options: */
-    
-    /* Movable items */
+			$(`
+				.attach-default
+			`).removeClass("hide");
 
-    // business
-    $( ".individual_business_collateral input[value='Movable items']" ).on( 'click', function(event) {
+			if (
+				document.querySelector(
+					'.applicant_individual_work input[type="checkbox"]'
+				) ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Salary"]'
+				).checked ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Business"]'
+				).checked ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Farming"]'
+				).checked
+			) {
+				// uncheck any previously "checked" sub-options
+				$('.applicant_individual_work input[type="checkbox"]').removeAttr(
+					"checked"
+				);
+			}
+		}
+	});
 
-        if (
-            document.querySelector('.individual_business_collateral input[value="Movable items"]')
-            && document.querySelector('.individual_business_collateral input[value="Movable items"]').checked
-        ) {
-            $('.individual_business_collateral_movable_item').removeClass('hide');
-        } else {
-            $('.individual_business_collateral_movable_item').addClass('hide');           
-        };
+	// Company options
+	$(".applicant_type input[value='Company']").on("click", function (event) {
+		if (
+			document.querySelector('.applicant_type input[value="Company"]') &&
+			document.querySelector('.applicant_type input[value="Company"]') &&
+			document.querySelector('.applicant_type input[value="Company"]').checked
+		) {
+			$(`
+				.attach-divider,
+				.elementor-element.company
+			`).removeClass("hide");
+			$(`
+				.attach-default,
+				.applicant_individual_work,
+				.elementor-element.individual
+			`).addClass("hide");
 
-    });     
-    // farming
-    $( ".individual_farming_collateral input[value='Movable items']" ).on( 'click', function(event) {
-        
-        if (
-            document.querySelector('.individual_farming_collateral input[value="Movable items"]')
-            && document.querySelector('.individual_farming_collateral input[value="Movable items"]').checked
-        ) {
-            $('.individual_farming_collateral_movable_item').removeClass('hide');
-        } else {
-            $('.individual_farming_collateral_movable_item').addClass('hide');           
-        };
+			if (
+				document.querySelector(
+					'.applicant_individual_work input[type="checkbox"]'
+				) ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Salary"]'
+				).checked ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Business"]'
+				).checked ||
+				document.querySelector(
+					'.applicant_individual_work input[value="Farming"]'
+				).checked
+			) {
+				// uncheck any previously "checked" sub-options
+				$('.applicant_individual_work input[type="checkbox"]').removeAttr(
+					"checked"
+				);
+			}
 
-    });
-    // company
-    $( ".company_collateral input[value='Movable items']" ).on( 'click', function(event) {
-        
-        if (
-            document.querySelector('.company_collateral input[value="Movable items"]')
-            && document.querySelector('.company_collateral input[value="Movable items"]').checked
-        ) {
-            $('.company_collateral_movable_item').removeClass('hide');
-        } else {
-            $('.company_collateral_movable_item').addClass('hide');           
-        };
+		} else {
+			$(".attach-default").removeClass("hide");
+			$(`
+				.attach-divider,
+				.applicant_individual_work,
+				.elementor-element.individual,
+				.elementor-element.company
+			`).addClass("hide");
+		}
+	});
 
-    }); 
+	/**
+	 *
+	 * My source of income is:
+	 * ----------------------------------------------------------------------------
+	 */
 
-    /* Motor vehicle */
+	// Salary
+	$(".applicant_individual_work input[value='Salary']").on(
+		"click",
+		function (event) {
+			if (
+				document.querySelector(
+					'.applicant_individual_work input[value="Salary"]'
+				) &&
+				document.querySelector('.applicant_individual_work input[value="Salary"]')
+					.checked
+			) {
+				$(`
+					.attach-default,
+					.elementor-element.individual,
+					.elementor-element.company
+				`).addClass("hide");
 
-    // business
-    $( ".individual_business_collateral input[value='Motor vehicle']" ).on( 'click', function(event) {
+				$(`
+					.attach-divider,
+					.elementor-element.individual.salary
+				`).removeClass("hide");
+			} else {
+				$(`
+					.attach-divider,
+					.elementor-element.individual.salary
+				`).addClass("hide");
 
-        if (
-            document.querySelector('.individual_business_collateral input[value="Motor vehicle"]')
-            && document.querySelector('.individual_business_collateral input[value="Motor vehicle"]').checked
-        ) {
-            $('.individual_business_collateral_motor_vehicle').removeClass('hide');
-        } else {
-            $('.individual_business_collateral_motor_vehicle').addClass('hide');           
-        };
+				$(`
+					.attach-default
+				`).removeClass("hide");
+			}
+		}
+	);
 
-    });
-    // farming
-    $( ".individual_farming_collateral input[value='Motor vehicle']" ).on( 'click', function(event) {
+	// Business
+	$(".applicant_individual_work input[value='Business']").on(
+		"click",
+		function (event) {
+			if (
+				document.querySelector(
+					'.applicant_individual_work input[value="Business"]'
+				) &&
+				document.querySelector(
+					'.applicant_individual_work input[value="Business"]'
+				).checked
+			) {
+				$(`
+					.attach-default,
+					.elementor-element.individual,
+					.elementor-element.company
+				`).addClass("hide");
 
-        if (
-            document.querySelector('.individual_farming_collateral input[value="Motor vehicle"]')
-            && document.querySelector('.individual_farming_collateral input[value="Motor vehicle"]').checked
-        ) {
-            $('.individual_farming_collateral_motor_vehicle').removeClass('hide');
-        } else {
-            $('.individual_farming_collateral_motor_vehicle').addClass('hide');           
-        };
+				$(`
+					.attach-divider,
+					.elementor-element.individual.business
+				`).removeClass("hide");
+			} else {
+				$(`
+					.attach-divider,
+					.elementor-element.individual.business
+				`).addClass("hide");
 
-    });
-    // company
-    $( ".company_collateral input[value='Motor vehicle']" ).on( 'click', function(event) {
+				$(`
+					.attach-default
+				`).removeClass("hide");
+			}
+		}
+	);
 
-        if (
-            document.querySelector('.company_collateral input[value="Motor vehicle"]')
-            && document.querySelector('.company_collateral input[value="Motor vehicle"]').checked
-        ) {
-            $('.company_collateral_motor_vehicle').removeClass('hide');
-        } else {
-            $('.company_collateral_motor_vehicle').addClass('hide');           
-        };
+	// Farming
+	$(".applicant_individual_work input[value='Farming']").on(
+		"click",
+		function (event) {
+			if (
+				document.querySelector(
+					'.applicant_individual_work input[value="Farming"]'
+				) &&
+				document.querySelector(
+					'.applicant_individual_work input[value="Farming"]'
+				).checked
+			) {
+				$(`
+					.attach-default,
+					.elementor-element.individual,
+					.elementor-element.company
+				`).addClass("hide");
 
-    });
+				$(`
+					.attach-divider,
+					.elementor-element.individual.farming
+				`).removeClass("hide");
+			} else {
+				$(`
+					.attach-divider,
+					.elementor-element.individual.farming
+				`).addClass("hide");
 
-    /* Land/Property */
+				$(`
+					.attach-default
+				`).removeClass("hide");
+			}
+		}
+	);
 
-    // business
-    $( ".individual_business_collateral input[value='Land/Property']" ).on( 'click', function(event) {
+	/**
+	 *
+	 * Generate file-number
+	 * ----------------------------------------------------------------------------
+	 */
 
-        if (
-            document.querySelector('.individual_business_collateral input[value="Land/Property"]')
-            && document.querySelector('.individual_business_collateral input[value="Land/Property"]').checked
-        ) {
-            $('.individual_business_collateral_property_land').removeClass('hide');
-        } else {
-            $('.individual_business_collateral_property_land').addClass('hide');           
-        };
+	// random string generator
+	function randomString(length, chars) {
+		let mask = "";
 
-    });
-    // farming
-    $( ".individual_farming_collateral input[value='Land/Property']" ).on( 'click', function(event) {
+		if (chars.indexOf("a") > -1) mask += "abcdefghijklmnopqrstuvwxyz";
+		if (chars.indexOf("A") > -1) mask += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		if (chars.indexOf("#") > -1) mask += "0123456789";
+		if (chars.indexOf("!") > -1) mask += "~`!@#$%^&*()_+-={}[]:\";'<>?,./|\\";
 
-        if (
-            document.querySelector('.individual_farming_collateral input[value="Land/Property"]')
-            && document.querySelector('.individual_farming_collateral input[value="Land/Property"]').checked
-        ) {
-            $('.individual_farming_collateral_property_land').removeClass('hide');
-        } else {
-            $('.individual_farming_collateral_property_land').addClass('hide');           
-        };
+		let result = "";
 
-    });
-    // company
-    $( ".company_collateral input[value='Land/Property']" ).on( 'click', function(event) {
+		for (let i = length; i > 0; --i) {
+			result += mask[Math.floor(Math.random() * mask.length)];
+		}
 
-        if (
-            document.querySelector('.company_collateral input[value="Land/Property"]')
-            && document.querySelector('.company_collateral input[value="Land/Property"]').checked
-        ) {
-            $('.company_collateral_property_land').removeClass('hide');
-        } else {
-            $('.company_collateral_property_land').addClass('hide');           
-        };
+		return result;
+	};
 
-    });
+	/**
+	 * Autogenerated File numbers
+	 * - Individual/Salary
+	 * - Individual/Business
+	 * - Individual/Farming
+	 * - Company
+	 */
 
-    /* Other */
+	// Salary
+	$("div[id*='wpcf7-f1329-'] input[type='email']").on(
+		"change input", 
+		function (event) {
+			if (
+				!!document.querySelector('div[id*="wpcf7-f1329-"] input[type="email"]').value // not empty
+			) {
+				document.querySelector(
+					'div[id*="wpcf7-f1329-"] input[name="filenumber"]'
+				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iS-${randomString(4,'#')}`;
+			} else {
+				document.querySelector('div[id*="wpcf7-f1329-"] input[name="filenumber"]').value = '';
+			}
+		}
+	);
 
-    // business
-    $( ".individual_business_collateral input[value='Other']" ).on( 'click', function(event) {
+	// Business
+	$("div[id*='wpcf7-f1390-'] input[type='email']").on(
+		"change input",
+		function (event) {
+			if (
+				!!document.querySelector('div[id*="wpcf7-f1390-"] input[type="email"]').value // not empty
+			) {
+				document.querySelector(
+					'div[id*="wpcf7-f1390-"] input[name="filenumber"]'
+				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iB-${randomString(4,'#')}`;
+			} else {
+				document.querySelector('div[id*="wpcf7-f1390-"] input[name="filenumber"]').value = '';
+			}
+		}
+	);
 
-        if (
-            document.querySelector('.individual_business_collateral input[value="Other"]')
-            && document.querySelector('.individual_business_collateral input[value="Other"]').checked
-        ) {
-            $('.individual_business_collateral_other').removeClass('hide');
-        } else {
-            $('.individual_business_collateral_other').addClass('hide');           
-        };
+	// Farming
+	$("div[id*='wpcf7-f1397-'] input[type='email']").on(
+		"change input",
+		function (event) {
+			if (
+				!!document.querySelector('div[id*="wpcf7-f1397-"] input[type="email"]').value // not empty
+			) {
+				document.querySelector(
+					'div[id*="wpcf7-f1397-"] input[name="filenumber"]'
+				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iF-${randomString(4,'#')}`;
+			} else {
+				document.querySelector('div[id*="wpcf7-f1397-"] input[name="filenumber"]').value = '';
+			}
+		}
+	);
 
-    });
-    // farming
-    $( ".individual_farming_collateral input[value='Other']" ).on( 'click', function(event) {
+	// Company
+	$("div[id*='wpcf7-f1404-'] input[type='email']").on(
+		"change input",
+		function (event) {
+			if (
+				!!document.querySelector('div[id*="wpcf7-f1404-"] input[type="email"]').value // not empty
+			) {
+				document.querySelector(
+					'div[id*="wpcf7-f1404-"] input[name="filenumber"]'
+				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}Co-${randomString(4,'#')}`;
+			} else {
+				document.querySelector('div[id*="wpcf7-f1404-"] input[name="filenumber"]').value = '';
+			}
+		}
+	);
 
-        if (
-            document.querySelector('.individual_farming_collateral input[value="Other"]')
-            && document.querySelector('.individual_farming_collateral input[value="Other"]').checked
-        ) {
-            $('.individual_farming_collateral_other').removeClass('hide');
-        } else {
-            $('.individual_farming_collateral_other').addClass('hide');           
-        };
-
-    });
-    // company
-    $( ".company_collateral input[value='Other']" ).on( 'click', function(event) {
-
-        if (
-            document.querySelector('.company_collateral input[value="Other"]')
-            && document.querySelector('.company_collateral input[value="Other"]').checked
-        ) {
-            $('.company_collateral_other').removeClass('hide');
-        } else {
-            $('.company_collateral_other').addClass('hide');           
-        };
-
-    });
 });

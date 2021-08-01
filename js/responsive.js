@@ -15,30 +15,18 @@ jQuery(document).ready(function( $ ){
         .gender,
         .mobilephone,
         .date_of_birth,
-        .marital_status,
         .village,
         .parish,
         .county,
         .residency_type,
         .work_address,
         .work_status,
-        .work_contract,
-        .guarantor_form,
         .farm_location,
         .farm_income,
-        .individual_business_name,
-        .individual_business_contact,
+        .individual_business_location,
         .individual_business_income,
-        .individual_business_trading_license,
-        .company_business_name,
-        .company_business_contact,
-        .company_business_income,
-        .company_business_trading_license,
-        .company_business_articles,
-        .motor_vehicle_inspection_report,
-        .motor_vehicle_logbook,
-        .property_land_title,
-        .property_valuation_report
+        .company_business_location,
+        .company_business_income
     `;
 
     const trippleFields = `
@@ -48,15 +36,9 @@ jQuery(document).ready(function( $ ){
         .gender,
         .mobilephone,
         .email,
-        .date_of_birth,
-        .marital_status,
-        .passport_photo,
         .village,
         .parish,
-        .subcounty,
-        .motor_vehicle_inspection_report,
-        .motor_vehicle_logbook,
-        .motor_vehicle_transfer_forms
+        .subcounty
     `;
 
     $(".inline-field").parents("p").addClass("inline-section desktop-inline-block");
