@@ -56,13 +56,22 @@ function recent_posts_function() {
 }
 
 
-function register_shortcodes(){
-   add_shortcode('recent-posts', 'recent_posts_function');
-}
+add_action( 'init', function() {
+
+    add_shortcode( 'site_url', function( $atts = null, $content = null ) {
+        return site_url();
+    });
+
+});
 
 
-add_action( 'init', 'register_shortcodes');
+add_action( 'init', function() {
 
+    add_shortcode( 'app_date', function( $atts = null, $content = null ) {
+        return date( 'd / m / Y' );
+    });
+
+});
 
 
 /**
