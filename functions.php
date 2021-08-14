@@ -44,37 +44,7 @@ function ac_enqueue_scripts() {
 }
 
 
-function recent_posts_function() {
-   query_posts(array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => 1));
-   if (have_posts()) :
-      while (have_posts()) : the_post();
-         $return_string = '<a href="'.get_permalink().'">'.get_the_title().'</a>';
-      endwhile;
-   endif;
-   wp_reset_query();
-   return $return_string;
-}
-
-
-add_action( 'init', function() {
-
-    add_shortcode( 'site_url', function( $atts = null, $content = null ) {
-        return site_url();
-    });
-
-});
-
-
-add_action( 'init', function() {
-
-    add_shortcode( 'app_date', function( $atts = null, $content = null ) {
-        return date( 'd / m / Y' );
-    });
-
-});
-
-
 /**
  * Include other functions as needed from the `inc` folder.
  */
-// require get_stylesheet_directory() . '/inc/file-uploads.php';
+require get_stylesheet_directory() . '/inc/shortcodes.php';
