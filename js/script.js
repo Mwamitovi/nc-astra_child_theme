@@ -21,6 +21,10 @@ jQuery(document).ready(function ($) {
 				.applicant_company_work,
 				.elementor-element.company
 			`).addClass("hide");
+
+			// related to the "Send PDF for Contact Form 7" pdf URL
+			$('div[id*="wpcf7-f1404-"] form').trigger( "reset" );
+
 		} else {
 			// close any sub-options & individual-forms
 			$(`
@@ -54,6 +58,7 @@ jQuery(document).ready(function ($) {
 					"checked"
 				);
 			}
+
 		}
 	});
 
@@ -94,6 +99,13 @@ jQuery(document).ready(function ($) {
 				);
 			}
 
+			// related to setting "Send PDF for Contact Form 7" pdf URL
+			$(`
+				div[id*="wpcf7-f1495-"] form,
+				div[id*="wpcf7-f1390-"] form,
+				div[id*="wpcf7-f1397-"] form
+			`).trigger( "reset" );
+
 		} else {
 			$(".attach-default").removeClass("hide");
 			$(`
@@ -132,6 +144,13 @@ jQuery(document).ready(function ($) {
 					.attach-divider,
 					.elementor-element.individual.salary
 				`).removeClass("hide");
+
+				/* related to setting "Send PDF for Contact Form 7" pdf URL */
+				$(`
+					div[id*="wpcf7-f1390-"] form,
+					div[id*="wpcf7-f1397-"] form
+				`).trigger( "reset" );
+
 			} else {
 				$(`
 					.attach-divider,
@@ -167,6 +186,14 @@ jQuery(document).ready(function ($) {
 					.attach-divider,
 					.elementor-element.individual.business
 				`).removeClass("hide");
+
+
+				// related to setting "Send PDF for Contact Form 7" pdf URL
+				$(`
+					div[id*="wpcf7-f1495-"] form,
+					div[id*="wpcf7-f1397-"] form
+				`).trigger( "reset" );
+
 			} else {
 				$(`
 					.attach-divider,
@@ -202,6 +229,13 @@ jQuery(document).ready(function ($) {
 					.attach-divider,
 					.elementor-element.individual.farming
 				`).removeClass("hide");
+
+				// related to setting "Send PDF for Contact Form 7" pdf URL
+				$(`
+					div[id*="wpcf7-f1495-"] form,
+					div[id*="wpcf7-f1390-"] form
+				`).trigger( "reset" );
+
 			} else {
 				$(`
 					.attach-divider,
@@ -248,17 +282,21 @@ jQuery(document).ready(function ($) {
 	 */
 
 	// Salary
-	$("div[id*='wpcf7-f1329-'] input[type='email']").on(
+	$("div[id*='wpcf7-f1495-'] input[type='email']").on(
 		"change input", 
 		function (event) {
 			if (
-				!!document.querySelector('div[id*="wpcf7-f1329-"] input[type="email"]').value // not empty
+				!!document.querySelector('div[id*="wpcf7-f1495-"] input[type="email"]').value // not empty
 			) {
 				document.querySelector(
-					'div[id*="wpcf7-f1329-"] input[name="filenumber"]'
-				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iS-${randomString(4,'#')}`;
+					'div[id*="wpcf7-f1495-"] input[name="filenumber"]'
+				).value = `NC1495-${randomString(4,'#')}iS-${randomString(4,'#')}`;
+
+				sessionStorage.setItem('formid', '1495');
 			} else {
-				document.querySelector('div[id*="wpcf7-f1329-"] input[name="filenumber"]').value = '';
+				document.querySelector('div[id*="wpcf7-f1495-"] input[name="filenumber"]').value = '';
+				
+				sessionStorage.removeItem('formid');
 			}
 		}
 	);
@@ -272,9 +310,13 @@ jQuery(document).ready(function ($) {
 			) {
 				document.querySelector(
 					'div[id*="wpcf7-f1390-"] input[name="filenumber"]'
-				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iB-${randomString(4,'#')}`;
+				).value = `NC1390-${randomString(4,'#')}iB-${randomString(4,'#')}`;
+
+				sessionStorage.setItem('formid', '1390');
 			} else {
 				document.querySelector('div[id*="wpcf7-f1390-"] input[name="filenumber"]').value = '';
+
+				sessionStorage.removeItem('formid');
 			}
 		}
 	);
@@ -288,9 +330,13 @@ jQuery(document).ready(function ($) {
 			) {
 				document.querySelector(
 					'div[id*="wpcf7-f1397-"] input[name="filenumber"]'
-				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}iF-${randomString(4,'#')}`;
+				).value = `NC1397-${randomString(4,'#')}iF-${randomString(4,'#')}`;
+
+				sessionStorage.setItem('formid', '1397');
 			} else {
 				document.querySelector('div[id*="wpcf7-f1397-"] input[name="filenumber"]').value = '';
+
+				sessionStorage.removeItem('formid');
 			}
 		}
 	);
@@ -304,11 +350,67 @@ jQuery(document).ready(function ($) {
 			) {
 				document.querySelector(
 					'div[id*="wpcf7-f1404-"] input[name="filenumber"]'
-				).value = `NC${randomString(4,'#')}-${randomString(2,'#')}Co-${randomString(4,'#')}`;
+				).value = `NC1404-${randomString(4,'#')}Co-${randomString(4,'#')}`;
+
+				sessionStorage.setItem('formid', '1404');
 			} else {
 				document.querySelector('div[id*="wpcf7-f1404-"] input[name="filenumber"]').value = '';
+				
+				sessionStorage.removeItem('formid');
 			}
 		}
 	);
+
+	/**
+	 *  Reload the "application form"
+	 *  @reason 
+	 *  We "erase" cookies in "hubspot.js" - they're replaced upon page (re)load
+	 */
+	$("#back_2_appform").on("click", function (event) {
+		event.preventDefault();
+		window.location.reload();
+	})
+
+	/**
+	 *
+	 * Manipulate PDF proper display
+	 * ----------------------------------------------------------------------------
+	 */
+
+	let formID = sessionStorage.getItem('formid');
+	let siteUrl = document.URL;
+	let pdfUrl  = '';
+
+	// for some reason...
+	// the "individual" pdf return errors, 
+	// so we manupilate the browser to render the right doc
+	if (siteUrl && siteUrl.includes("sendpdfcf7_uploads")) {
+		if (document.body && document.body.classList && document.body.classList.contains("error404")) {
+			console.log('Generated the PDF successfully');
+
+			if (formID === '1495') {
+
+				pdfUrl = siteUrl.replace(
+					/sendpdfcf7_uploads.*-loan/, `sendpdfcf7_uploads/${formID}/salary-loan`
+				);
+
+			} else if (formID === '1390') {
+
+				pdfUrl = siteUrl.replace(
+					/sendpdfcf7_uploads.*-loan/, `sendpdfcf7_uploads/${formID}/business-loan`
+				);
+
+			} else if (formID === '1397') {
+
+				pdfUrl = siteUrl.replace(
+					/sendpdfcf7_uploads.*-loan/, `sendpdfcf7_uploads/${formID}/farming-loan`
+				);
+
+			};
+
+			window.location = pdfUrl;
+
+		};
+	};
 
 });

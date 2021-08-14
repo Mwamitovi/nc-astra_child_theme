@@ -41,8 +41,16 @@ jQuery(document).ready(function( $ ){
         .subcounty
     `;
 
+    const alignedFields = `
+        .residency_type,
+        .residency_length,
+        .work_status,
+        .jobtitle       
+    `;
+
     $(".inline-field").parents("p").addClass("inline-section desktop-inline-block");
     $(leftFields).parents("p").addClass("left-field-section");
     $(trippleFields).parents("p").addClass("tripple-fields");
+    $(alignedFields).parents("p").addClass("normalize-fields");
 
 });

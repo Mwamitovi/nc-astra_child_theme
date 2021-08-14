@@ -88,6 +88,14 @@ h1, h2, h3 {
    background: none;
 }
 
+.hide {
+  display: none !important;
+}
+
+.end-section .main-column {
+  clip-path: inset(0px -10px -10px);
+}
+
 
 /* Widgets
    ========================================================================== */
@@ -106,8 +114,28 @@ h1, h2, h3 {
 /* Application Form
    ========================================================================== */
 
+
+.individual form p,
+.company form p {
+  vertical-align: top !important;
+}
+
+.individual form p.normalize-fields,
+.company form p.normalize-fields {
+  vertical-align: bottom !important;
+}
+
 .wpcf7 textarea {
   height: 150px;
+}
+
+.wpcf7-not-valid-tip {
+  font-size: 0.725em;
+}
+
+.wpcf7 input[type="date"] {
+  padding-top: .5em;
+  padding-bottom: .5em;
 }
 
 @media (max-width: 767px) {
@@ -130,6 +158,10 @@ h1, h2, h3 {
   .left-field-section {
     margin-right: 1.2em;
   }
+}
+
+#back_2_appform {
+  cursor: pointer;
 }
 
 

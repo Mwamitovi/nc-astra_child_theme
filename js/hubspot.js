@@ -18,9 +18,18 @@ jQuery(document).ready(function( $ ){
 		eraseCookie('hubspotutk');
 		console.log('New contact created in hubspot');
 
-		// setTimeout(function() {
-		// 	window.location.reload();
-		// }, 8000);
+		/**
+		 *  @hack for "Send PDF for Contact Form 7" plugin
+		 *  - gets the plugin to refresh the "redirect" pdf link (after "submit")
+		 */			
+		eraseCookie('PHPSESSID');
+
+		setTimeout(function() {
+			
+			$(".start-section, .end-section").addClass("hide");
+			$(".complete-section").removeClass("hide");
+
+		}, 8000);
 
 	});
 	
